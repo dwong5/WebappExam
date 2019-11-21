@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MBTA Result</title>
+  </head>
+  
+  <body>
+    <h1>Results</h1>
+    {% if MBTA_Station %}
+      <p>The closest MBTA stop by {{location}} is at {{MBTA_Station}} Station.
+      </p>
+      {% if wheelchair == "No Information" %}
+        <p>There is no information on wheelchair accessibility at {{MBTA_Station}} Station. </p>
+      {% else %}
+        <p>The {{MBTA_Station}} Station is wheelchair {{wheelchair}}.</p>
+      {% endif %}
+      <br>
+      <p style="color: blue"> Want to enter a new location? </p>
+      <form>
+        <input type="button" value="Back to Homepage" onclick="history.back()">
+      </form>
+      </br>
+    {% else %}
+      <p style="color:red">Sorry. There is no MBTA stop near {{location}}. Be more specific.</p>
+      <form>
+        <input type="button" value="Back to Homepage" onclick="history.back()">
+      </form>
+    {% endif %}
+  
+  </body>
+</html>
