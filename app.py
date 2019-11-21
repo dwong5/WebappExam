@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-from calculator import quadratic
+from calculator import *
 
 
 app = Flask(__name__)
@@ -9,12 +9,14 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def calculate():
     if request.method == "POST":
-        a = request.form["a"]
-        result = 'Shaun'
+        a = str(request.form["a"])
+        gender = str(request.form["gender"])
+        result = same_value(a)
+        result1 = highest_year(a,gender)
 
-        if root_1:
+        if a:
             return render_template(
-                "calculator_result.html", a=a, result = result
+                "calculator_result.html", a=a, gender = gender, result = result, result1 = result1
             )
         else:
             return render_template("calculator_form.html", error=True)
